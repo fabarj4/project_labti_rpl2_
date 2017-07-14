@@ -5,11 +5,38 @@
  */
 package model;
 
+import javax.persistence.Column; 
+import javax.persistence.Entity; 
+import javax.persistence.EnumType; 
+import javax.persistence.Enumerated; 
+import javax.persistence.GeneratedValue; 
+import javax.persistence.GenerationType;
+import javax.persistence.Id; 
+import javax.persistence.Table;
+import javax.persistence.Temporal; 
+import javax.persistence.TemporalType; 
+import org.hibernate.annotations.GenericGenerator; 
+
 /**
  *
  * @author F
  */
+
+@Entity
+@Table(name = "user")
 public class m_user {
+    
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private int id;
+    @Column(name = "username")
+    private String username;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "name")
+    private String nama;
+    
+   
 
     public int getId() {
         return id;
@@ -41,11 +68,5 @@ public class m_user {
 
     public void setNama(String nama) {
         this.nama = nama;
-    }
-    private int id;
-    private String username;
-    private String password;
-    private String nama;
-    
-    
+    }   
 }

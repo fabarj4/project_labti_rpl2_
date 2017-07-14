@@ -28,4 +28,12 @@ public class c_login {
     public void setUsername(){
        this.loginView.getT_username().setText("LOL");
     }
+    
+    //fungsi ini untuk login admin
+    public void login(){
+        String username = this.loginView.getT_username().getText().trim();
+        String password = this.loginView.getT_password().getText().trim();
+        
+        System.out.println(username + password);
+    }
 }

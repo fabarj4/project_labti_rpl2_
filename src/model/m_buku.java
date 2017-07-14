@@ -5,12 +5,44 @@
  */
 package model;
 
+import javax.persistence.Column; 
+import javax.persistence.Entity; 
+import javax.persistence.EnumType; 
+import javax.persistence.Enumerated; 
+import javax.persistence.GeneratedValue; 
+import javax.persistence.GenerationType;
+import javax.persistence.Id; 
+import javax.persistence.Table;
+import javax.persistence.Temporal; 
+import javax.persistence.TemporalType; 
+import org.hibernate.annotations.GenericGenerator; 
+
 /**
  *
  * @author F
  */
+@Entity
+@Table(name = "buku")
 public class m_buku{
-
+    
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private int id;
+    @Column(name = "judul")
+    private String judul;
+    @Column(name = "kategori")
+    private String kategori;
+    @Column(name = "pengarang")
+    private String pengarang;
+    @Column(name = "penerbit")
+    private String penerbit;
+    @Column(name = "tahun")
+    private String tahun;
+    @Column(name = "harga")
+    private int harga;
+    @Column(name = "persedian")
+    private int persedian;
+    
     public int getId() {
         return id;
     }
@@ -74,12 +106,5 @@ public class m_buku{
     public void setPersedian(int persedian) {
         this.persedian = persedian;
     }
-    private int id;
-    private String judul;
-    private String kategori;
-    private String pengarang;
-    private String penerbit;
-    private String tahun;
-    private int harga;
-    private int persedian;
+    
 }

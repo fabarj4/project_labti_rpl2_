@@ -124,7 +124,7 @@ public class v_login extends javax.swing.JFrame {
 
     private void b_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_loginActionPerformed
         // TODO add your handling code here:
-        getLoginController().setUsername();
+        getLoginController().login();
     }//GEN-LAST:event_b_loginActionPerformed
 
     /**
