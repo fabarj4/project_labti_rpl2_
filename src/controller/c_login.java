@@ -18,8 +18,10 @@ import view.v_login;
  * @author F
  */
 public class c_login {
+    //deklarasi view
     private final v_login loginView;
 
+    //constructor
     public c_login(v_login loginView) {
         this.loginView = loginView;
     }    
@@ -31,6 +33,7 @@ public class c_login {
     
     //fungsi ini untuk login admin
     public void login(){
+        //deklarasi untuk mengambil nilai dari view
         String username = this.loginView.getT_username().getText().trim();
         String password = this.loginView.getT_password().getText().trim();
         
