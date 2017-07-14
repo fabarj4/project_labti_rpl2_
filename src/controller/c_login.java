@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package controller;
+import config.HibernateUtil;
+import dao.dao;
 import java.text.ParseException; 
 import java.text.SimpleDateFormat; 
 import java.util.List; 
@@ -20,6 +22,7 @@ import view.v_login;
 public class c_login {
     //deklarasi view
     private final v_login loginView;
+    private final dao daoTokoBuku = HibernateUtil.getTOKO_BUKU_DAO();
 
     //constructor
     public c_login(v_login loginView) {
@@ -37,6 +40,11 @@ public class c_login {
         String username = this.loginView.getT_username().getText().trim();
         String password = this.loginView.getT_password().getText().trim();
         
-        System.out.println(username + password);
+        boolean cek = daoTokoBuku.login(username, password);
+        if(cek == true){
+            System.out.println("benar");
+        }else{
+            System.out.println("salah");
+        }
     }
 }
