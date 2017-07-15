@@ -14,18 +14,19 @@ import javax.swing.JOptionPane;
 import model.m_buku;
 import view.v_admin;
 import view.v_admin_data;
+import view.v_user;
 
 /**
  *
  * @author F
  */
-public class c_admin {
-    private final v_admin adminView;
+public class c_user {
+    private final v_user adminView;
     private final dao daoTokoBuku = HibernateUtil.getTOKO_BUKU_DAO();
     private List<m_buku> dataBuku;
     private BukuTableModel bukuTableModel;
 
-    public c_admin(v_admin adminView) {
+    public c_user(v_user adminView) {
         this.adminView = adminView;
     }
     

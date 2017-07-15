@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level; 
 import java.util.logging.Logger; 
 import javax.swing.JOptionPane; 
+import view.v_admin;
 
 import view.v_login;
 
@@ -42,7 +43,9 @@ public class c_login {
         
         boolean cek = daoTokoBuku.login(username, password);
         if(cek == true){
-            System.out.println("benar");
+            v_admin admin = new v_admin();
+            admin.setVisible(true);
+            loginView.dispose();
         }else{
             System.out.println("salah");
         }

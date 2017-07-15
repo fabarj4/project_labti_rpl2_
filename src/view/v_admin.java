@@ -6,9 +6,12 @@
 package view;
 
 import controller.c_admin;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -35,10 +38,39 @@ public class v_admin extends javax.swing.JFrame {
                     }else{
                         t_buku.setValueAt(true, row, 0);
                     }
+                }else if(col == 10){
+                    adminController.selectData(row);
                 }
             }
         });
         
+        c_kategori.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(c_kategori.getSelectedIndex() != 0){
+                    adminController.tampilData(c_kategori.getSelectedIndex());
+                }else{
+                    adminController.tampilData();
+                }
+//                JOptionPane.showMessageDialog(null, "data : "+c_kategori.getSelectedIndex());
+            }
+        });
+        
+        t_cari.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                adminController.tampilData(c_kategori.getSelectedIndex(), t_cari.getText());
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                adminController.tampilData(c_kategori.getSelectedIndex(), t_cari.getText());
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        });
         adminController.tampilData();
     }
 
@@ -56,7 +88,6 @@ public class v_admin extends javax.swing.JFrame {
         t_buku = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         t_hapus = new javax.swing.JButton();
-        t_ubah = new javax.swing.JButton();
         t_tambah = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -71,7 +102,7 @@ public class v_admin extends javax.swing.JFrame {
         t_cari = new javax.swing.JTextField();
         c_kategori = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -118,19 +149,7 @@ public class v_admin extends javax.swing.JFrame {
                 t_hapusActionPerformed(evt);
             }
         });
-        jPanel1.add(t_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 80, 30));
-
-        t_ubah.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        t_ubah.setForeground(new java.awt.Color(255, 255, 255));
-        t_ubah.setText("Ubah");
-        t_ubah.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        t_ubah.setContentAreaFilled(false);
-        t_ubah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                t_ubahActionPerformed(evt);
-            }
-        });
-        jPanel1.add(t_ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 80, 30));
+        jPanel1.add(t_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, 80, 30));
 
         t_tambah.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         t_tambah.setForeground(new java.awt.Color(255, 255, 255));
@@ -312,19 +331,13 @@ public class v_admin extends javax.swing.JFrame {
 
     private void t_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tambahActionPerformed
         // TODO add your handling code here:
-        v_admin_data data = new v_admin_data(0);
+        v_admin_data data = new v_admin_data();
         data.setVisible(true);
     }//GEN-LAST:event_t_tambahActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void t_ubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_ubahActionPerformed
-        // TODO add your handling code here:
-        v_admin_data data = new v_admin_data(1);
-        data.setVisible(true);
-    }//GEN-LAST:event_t_ubahActionPerformed
 
     private void t_cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_cariActionPerformed
         // TODO add your handling code here:
@@ -386,7 +399,6 @@ public class v_admin extends javax.swing.JFrame {
     private javax.swing.JTextField t_cari;
     private javax.swing.JButton t_hapus;
     private javax.swing.JButton t_tambah;
-    private javax.swing.JButton t_ubah;
     // End of variables declaration//GEN-END:variables
     private c_admin adminController = new c_admin(this);
     

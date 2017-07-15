@@ -16,7 +16,9 @@ import model.m_user;
 public interface dao {
     public boolean login(String username, String password);
     public void saveBuku(m_buku buku);
+    public void updateBuku(m_buku buku);
     public void deleteBuku(m_buku buku);
     public List<m_buku> getDataBukus();
     public List<m_buku> getDataBukus(int kategori);
+    public List<m_buku> getDataBukus(int kategori, String cari);
 }

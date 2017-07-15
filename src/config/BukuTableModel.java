@@ -22,7 +22,7 @@ public class BukuTableModel extends DefaultTableModel{
         "Ceklis", "No", "ID", 
         "Judul","Kategori","Pengarang", 
         "Penerbit","Tahun Terbit",
-        "Harga","Persediaan","Kosong"},0);
+        "Harga","Persediaan",""},0);
     }
     
     @Override

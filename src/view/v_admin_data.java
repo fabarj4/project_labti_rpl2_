@@ -10,13 +10,15 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import model.m_buku;
 
 /**
  *
  * @author F
  */
 public class v_admin_data extends javax.swing.JFrame {
-
+    
+    private int tipe = 0;
     /**
      * Creates new form v_admin_data
      */
@@ -25,9 +27,11 @@ public class v_admin_data extends javax.swing.JFrame {
         l_judul.setText("FORM TAMBAH");
     }
     
-    public v_admin_data(int tipe) {
+    public v_admin_data(int tipe, m_buku buku) {
         initComponents();
+        dataController.setData(buku);
         l_judul.setText("FORM EDIT");
+        this.tipe = tipe;
     }
 
     /**
@@ -40,8 +44,6 @@ public class v_admin_data extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        t_id = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         t_judul = new javax.swing.JTextField();
@@ -72,54 +74,39 @@ public class v_admin_data extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("ID");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
-
-        t_id.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        t_id.setForeground(new java.awt.Color(102, 102, 102));
-        t_id.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
-        t_id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                t_idActionPerformed(evt);
-            }
-        });
-        jPanel1.add(t_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 111, 306, -1));
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Judul");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 144, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Kategori");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 175, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, -1, -1));
 
         t_judul.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         t_judul.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
-        jPanel1.add(t_judul, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 144, 306, -1));
+        jPanel1.add(t_judul, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 306, -1));
 
         t_kategori.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         t_kategori.setForeground(new java.awt.Color(102, 102, 102));
         t_kategori.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Anak", "Novel", "Komik", "Majalah", "Kuliner", "Edukasi" }));
         t_kategori.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(t_kategori, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 172, 122, -1));
+        jPanel1.add(t_kategori, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 122, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Pengarang");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 208, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
 
         t_pengarang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         t_pengarang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
-        jPanel1.add(t_pengarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 205, 306, -1));
+        jPanel1.add(t_pengarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 306, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Penerbit");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 241, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
 
         t_penerbit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         t_penerbit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
@@ -128,12 +115,12 @@ public class v_admin_data extends javax.swing.JFrame {
                 t_penerbitActionPerformed(evt);
             }
         });
-        jPanel1.add(t_penerbit, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 238, 306, -1));
+        jPanel1.add(t_penerbit, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 306, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Tahun Terbit");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 274, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
 
         t_tahun.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         t_tahun.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
@@ -142,12 +129,12 @@ public class v_admin_data extends javax.swing.JFrame {
                 t_tahunActionPerformed(evt);
             }
         });
-        jPanel1.add(t_tahun, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 271, 306, -1));
+        jPanel1.add(t_tahun, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 306, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Harga");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 307, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, -1));
 
         t_harga.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         t_harga.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
@@ -156,16 +143,16 @@ public class v_admin_data extends javax.swing.JFrame {
                 t_hargaActionPerformed(evt);
             }
         });
-        jPanel1.add(t_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 304, 306, -1));
+        jPanel1.add(t_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 306, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Persediaan");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 340, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, -1, -1));
 
         t_persediaan.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         t_persediaan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(t_persediaan, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 337, 55, -1));
+        jPanel1.add(t_persediaan, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 55, -1));
 
         b_selesai.setBackground(new java.awt.Color(0, 204, 102));
         b_selesai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -178,7 +165,7 @@ public class v_admin_data extends javax.swing.JFrame {
                 b_selesaiActionPerformed(evt);
             }
         });
-        jPanel1.add(b_selesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 345, 87, 35));
+        jPanel1.add(b_selesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, 87, 35));
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 102));
 
@@ -293,10 +280,6 @@ public class v_admin_data extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void t_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_idActionPerformed
-
     private void t_tahunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tahunActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_t_tahunActionPerformed
@@ -311,7 +294,11 @@ public class v_admin_data extends javax.swing.JFrame {
 
     private void b_selesaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_selesaiActionPerformed
         // TODO add your handling code here:
-        dataController.tambahData();
+        if(tipe == 1){
+            dataController.editData();
+        }else{
+            dataController.tambahData();
+        }
     }//GEN-LAST:event_b_selesaiActionPerformed
 
     /**
@@ -351,7 +338,6 @@ public class v_admin_data extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_selesai;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -368,7 +354,6 @@ public class v_admin_data extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel l_judul;
     private javax.swing.JTextField t_harga;
-    private javax.swing.JTextField t_id;
     private javax.swing.JTextField t_judul;
     private javax.swing.JComboBox t_kategori;
     private javax.swing.JTextField t_penerbit;
@@ -395,13 +380,7 @@ public class v_admin_data extends javax.swing.JFrame {
         this.t_harga = t_harga;
     }
 
-    public JTextField getT_id() {
-        return t_id;
-    }
-
-    public void setT_id(JTextField t_id) {
-        this.t_id = t_id;
-    }
+    
 
     public JTextField getT_judul() {
         return t_judul;
