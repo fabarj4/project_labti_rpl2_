@@ -5,6 +5,12 @@
  */
 package view;
 
+import controller.c_admin_data;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+
 /**
  *
  * @author F
@@ -16,6 +22,12 @@ public class v_admin_data extends javax.swing.JFrame {
      */
     public v_admin_data() {
         initComponents();
+        l_judul.setText("FORM TAMBAH");
+    }
+    
+    public v_admin_data(int tipe) {
+        initComponents();
+        l_judul.setText("FORM EDIT");
     }
 
     /**
@@ -29,31 +41,31 @@ public class v_admin_data extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        t_id = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        t_judul = new javax.swing.JTextField();
+        t_kategori = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        t_pengarang = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        t_penerbit = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        t_tahun = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        t_harga = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
+        t_persediaan = new javax.swing.JSpinner();
+        b_selesai = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        l_judul = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 153));
@@ -65,15 +77,15 @@ public class v_admin_data extends javax.swing.JFrame {
         jLabel2.setText("ID");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        t_id.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_id.setForeground(new java.awt.Color(102, 102, 102));
+        t_id.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
+        t_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                t_idActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 111, 306, -1));
+        jPanel1.add(t_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 111, 306, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,90 +97,95 @@ public class v_admin_data extends javax.swing.JFrame {
         jLabel4.setText("Kategori");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 175, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 144, 306, -1));
+        t_judul.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_judul.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
+        jPanel1.add(t_judul, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 144, 306, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(102, 102, 102));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Anak", "Novel", "Komik", "Majalah", "Kuliner", "Edukasi" }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 172, 122, -1));
+        t_kategori.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        t_kategori.setForeground(new java.awt.Color(102, 102, 102));
+        t_kategori.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Anak", "Novel", "Komik", "Majalah", "Kuliner", "Edukasi" }));
+        t_kategori.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(t_kategori, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 172, 122, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Pengarang");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 208, -1, -1));
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 205, 306, -1));
+        t_pengarang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_pengarang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
+        jPanel1.add(t_pengarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 205, 306, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Penerbit");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 241, -1, -1));
 
-        jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        t_penerbit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_penerbit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
+        t_penerbit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                t_penerbitActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 238, 306, -1));
+        jPanel1.add(t_penerbit, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 238, 306, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Tahun Terbit");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 274, -1, -1));
 
-        jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        t_tahun.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_tahun.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
+        t_tahun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                t_tahunActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 271, 306, -1));
+        jPanel1.add(t_tahun, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 271, 306, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Harga");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 307, -1, -1));
 
-        jTextField6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        t_harga.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t_harga.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 102)));
+        t_harga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                t_hargaActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 304, 306, -1));
+        jPanel1.add(t_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 304, 306, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Persediaan");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 340, -1, -1));
 
-        jSpinner1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jSpinner1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 337, 55, -1));
+        t_persediaan.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        t_persediaan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(t_persediaan, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 337, 55, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 102));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("SELESAI");
-        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jButton1.setContentAreaFilled(false);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 345, 87, 35));
+        b_selesai.setBackground(new java.awt.Color(0, 204, 102));
+        b_selesai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        b_selesai.setForeground(new java.awt.Color(255, 255, 255));
+        b_selesai.setText("SELESAI");
+        b_selesai.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        b_selesai.setContentAreaFilled(false);
+        b_selesai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_selesaiActionPerformed(evt);
+            }
+        });
+        jPanel1.add(b_selesai, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 345, 87, 35));
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 102));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Rockwell Condensed", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("FORM TAMBAH");
+        l_judul.setBackground(new java.awt.Color(255, 255, 255));
+        l_judul.setFont(new java.awt.Font("Rockwell Condensed", 1, 36)); // NOI18N
+        l_judul.setForeground(new java.awt.Color(255, 255, 255));
+        l_judul.setText("FORM TAMBAH");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -176,14 +193,14 @@ public class v_admin_data extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(77, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(l_judul)
                 .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 10, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(l_judul, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 320, 60));
@@ -276,21 +293,26 @@ public class v_admin_data extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void t_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_idActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_t_idActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void t_tahunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tahunActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_t_tahunActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void t_penerbitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_penerbitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_t_penerbitActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void t_hargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_hargaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_t_hargaActionPerformed
+
+    private void b_selesaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_selesaiActionPerformed
+        // TODO add your handling code here:
+        dataController.tambahData();
+    }//GEN-LAST:event_b_selesaiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,9 +350,7 @@ public class v_admin_data extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton b_selesai;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -346,12 +366,98 @@ public class v_admin_data extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel l_judul;
+    private javax.swing.JTextField t_harga;
+    private javax.swing.JTextField t_id;
+    private javax.swing.JTextField t_judul;
+    private javax.swing.JComboBox t_kategori;
+    private javax.swing.JTextField t_penerbit;
+    private javax.swing.JTextField t_pengarang;
+    private javax.swing.JSpinner t_persediaan;
+    private javax.swing.JTextField t_tahun;
     // End of variables declaration//GEN-END:variables
+    
+    private c_admin_data dataController = new c_admin_data(this);
+
+    public JLabel getL_judul() {
+        return l_judul;
+    }
+
+    public void setL_judul(JLabel l_judul) {
+        this.l_judul = l_judul;
+    }
+
+    public JTextField getT_harga() {
+        return t_harga;
+    }
+
+    public void setT_harga(JTextField t_harga) {
+        this.t_harga = t_harga;
+    }
+
+    public JTextField getT_id() {
+        return t_id;
+    }
+
+    public void setT_id(JTextField t_id) {
+        this.t_id = t_id;
+    }
+
+    public JTextField getT_judul() {
+        return t_judul;
+    }
+
+    public void setT_judul(JTextField t_judul) {
+        this.t_judul = t_judul;
+    }
+
+    public JComboBox getT_kategori() {
+        return t_kategori;
+    }
+
+    public void setT_kategori(JComboBox t_kategori) {
+        this.t_kategori = t_kategori;
+    }
+
+    public JTextField getT_penerbit() {
+        return t_penerbit;
+    }
+
+    public void setT_penerbit(JTextField t_penerbit) {
+        this.t_penerbit = t_penerbit;
+    }
+
+    public JTextField getT_pengarang() {
+        return t_pengarang;
+    }
+
+    public void setT_pengarang(JTextField t_pengarang) {
+        this.t_pengarang = t_pengarang;
+    }
+
+    public JSpinner getT_persediaan() {
+        return t_persediaan;
+    }
+
+    public void setT_persediaan(JSpinner t_persediaan) {
+        this.t_persediaan = t_persediaan;
+    }
+
+    public JTextField getT_tahun() {
+        return t_tahun;
+    }
+
+    public void setT_tahun(JTextField t_tahun) {
+        this.t_tahun = t_tahun;
+    }
+
+    public c_admin_data getDataController() {
+        return dataController;
+    }
+
+    public void setDataController(c_admin_data dataController) {
+        this.dataController = dataController;
+    }
+    
+    
 }

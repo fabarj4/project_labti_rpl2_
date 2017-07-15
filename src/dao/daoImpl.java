@@ -26,7 +26,6 @@ public class daoImpl implements dao{
         this.sessionFactory = sessionFactory;
     }
     
-
     @Override
     @SuppressWarnings("ConvertToTryWithResources") 
     public boolean login(String username, String password) {
@@ -41,7 +40,7 @@ public class daoImpl implements dao{
                     .createQuery("FROM m_user u where u.username='"+username+"' and u.password ='"+password+"'");
             List resultList = q.list();
             session.getTransaction().commit();
-            if(resultList.size() != 0){
+            if(!resultList.isEmpty()){
                 return true;
             }else{
                 return false;
@@ -54,5 +53,79 @@ public class daoImpl implements dao{
             session.close();
         }
     }
+
+    @Override
+    @SuppressWarnings("ConvertToTryWithResources") 
+    public void saveBuku(m_buku buku) {
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+            session.save(buku);
+            session.getTransaction().commit();
+        }catch(Exception ex){
+            session.getTransaction().rollback();
+        }finally{
+            session.close();
+        }
+    }
+
+    @Override
+    @SuppressWarnings("ConvertToTryWithResources") 
+    public List<m_buku> getDataBukus() {
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+            List<m_buku> dataBuku = session.createCriteria(m_buku.class).list();
+            session.getTransaction().commit();
+            return dataBuku;
+        }catch(Exception ex){
+            session.getTransaction().rollback();
+            return null;
+        }finally{
+            session.close();
+        }
+    }
+    
+    @Override
+    public List<m_buku> getDataBukus(int kategori) {
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+            Query q = session
+                    .createQuery("FROM m_buku b where b.kategori='"+kategori+"'");
+            List<m_buku> dataBuku = q.list();
+            session.getTransaction().commit();
+            return dataBuku;
+        }catch(Exception ex){
+            session.getTransaction().rollback();
+            return null;
+        }finally{
+            session.close();
+        }
+    }
+
+    @Override
+    public void deleteBuku(m_buku buku) {
+        Session session = sessionFactory.openSession();
+        try{
+            session.beginTransaction();
+            session.delete(buku);
+            session.getTransaction().commit();
+        }catch(Exception ex){
+            session.getTransaction().rollback();
+        }finally{
+            session.close();
+        }
+    }
+
     
 }
+
+//Session session = sessionFactory.openSession();
+//try{
+//
+//}catch(Exception ex){
+//
+//}finally{
+//    session.close();
+//}

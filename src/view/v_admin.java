@@ -5,6 +5,11 @@
  */
 package view;
 
+import controller.c_admin;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
 /**
  *
  * @author F
@@ -16,6 +21,25 @@ public class v_admin extends javax.swing.JFrame {
      */
     public v_admin() {
         initComponents();
+        
+        t_buku.addMouseListener(new java.awt.event.MouseAdapter(){
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt){
+                int row = t_buku.rowAtPoint(evt.getPoint());
+                int col = t_buku.columnAtPoint(evt.getPoint());
+                //JOptionPane.showMessageDialog(null, "baris ke - "+row);
+                if(col!=0 && col != 10){
+                    Boolean check = Boolean.valueOf(t_buku.getValueAt(row, 0).toString());
+                    if(check){
+                        t_buku.setValueAt(false, row, 0);
+                    }else{
+                        t_buku.setValueAt(true, row, 0);
+                    }
+                }
+            }
+        });
+        
+        adminController.tampilData();
     }
 
     /**
@@ -29,30 +53,33 @@ public class v_admin extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        t_buku = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        t_hapus = new javax.swing.JButton();
+        t_ubah = new javax.swing.JButton();
+        t_tambah = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        t_cari = new javax.swing.JTextField();
+        c_kategori = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setBackground(new java.awt.Color(204, 255, 204));
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(51, 51, 51));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        t_buku.setBackground(new java.awt.Color(204, 255, 204));
+        t_buku.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        t_buku.setForeground(new java.awt.Color(51, 51, 51));
+        t_buku.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -63,9 +90,9 @@ public class v_admin extends javax.swing.JFrame {
                 "", "ID", "Judul", "Kategori", "Pengarang", "Penerbit", "Tahun", "Harga", "Persediaan"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(t_buku);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 86, 540, 230));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 630, 230));
 
         jButton2.setBackground(new java.awt.Color(0, 204, 153));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -80,42 +107,42 @@ public class v_admin extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 80, 30));
 
-        jButton3.setBackground(new java.awt.Color(204, 255, 204));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Hapus");
-        jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton3.setContentAreaFilled(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        t_hapus.setBackground(new java.awt.Color(204, 255, 204));
+        t_hapus.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        t_hapus.setForeground(new java.awt.Color(255, 255, 255));
+        t_hapus.setText("Hapus");
+        t_hapus.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        t_hapus.setContentAreaFilled(false);
+        t_hapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                t_hapusActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 80, 30));
+        jPanel1.add(t_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 80, 30));
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Ubah");
-        jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton4.setContentAreaFilled(false);
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 80, 30));
-
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Tambah");
-        jButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton5.setContentAreaFilled(false);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        t_ubah.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        t_ubah.setForeground(new java.awt.Color(255, 255, 255));
+        t_ubah.setText("Ubah");
+        t_ubah.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        t_ubah.setContentAreaFilled(false);
+        t_ubah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                t_ubahActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, 80, 30));
+        jPanel1.add(t_ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, 80, 30));
 
-        jLabel5.setFont(new java.awt.Font("Rockwell Condensed", 1, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Daftar Buku");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, -1, 40));
+        t_tambah.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        t_tambah.setForeground(new java.awt.Color(255, 255, 255));
+        t_tambah.setText("Tambah");
+        t_tambah.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        t_tambah.setContentAreaFilled(false);
+        t_tambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_tambahActionPerformed(evt);
+            }
+        });
+        jPanel1.add(t_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 80, 30));
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 0));
 
@@ -142,18 +169,27 @@ public class v_admin extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 102));
 
+        jLabel5.setFont(new java.awt.Font("Rockwell Condensed", 1, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Daftar Buku");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 200, 40));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 200, 40));
 
         jPanel4.setBackground(new java.awt.Color(0, 204, 102));
 
@@ -191,7 +227,7 @@ public class v_admin extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 210, 10));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 210, 10));
 
         jPanel6.setBackground(new java.awt.Color(153, 255, 153));
 
@@ -206,7 +242,7 @@ public class v_admin extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 0, 10, 180));
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 0, 10, 180));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 153));
 
@@ -221,7 +257,7 @@ public class v_admin extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 10, 120));
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, 10, 120));
 
         jPanel8.setBackground(new java.awt.Color(255, 102, 51));
 
@@ -236,7 +272,24 @@ public class v_admin extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 10, 90));
+        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 10, 90));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Cari :");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
+
+        t_cari.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        t_cari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_cariActionPerformed(evt);
+            }
+        });
+        jPanel1.add(t_cari, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 120, -1));
+
+        c_kategori.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        c_kategori.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Anak", "Novel", "Komik", "Majalah", "Kuliner", "Edukasi" }));
+        jPanel1.add(c_kategori, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 110, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -246,23 +299,38 @@ public class v_admin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void t_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_hapusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        adminController.hapusData();
+    }//GEN-LAST:event_t_hapusActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void t_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tambahActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        v_admin_data data = new v_admin_data(0);
+        data.setVisible(true);
+    }//GEN-LAST:event_t_tambahActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void t_ubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_ubahActionPerformed
+        // TODO add your handling code here:
+        v_admin_data data = new v_admin_data(1);
+        data.setVisible(true);
+    }//GEN-LAST:event_t_ubahActionPerformed
+
+    private void t_cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_cariActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_cariActionPerformed
+
+    
 
     /**
      * @param args the command line arguments
@@ -300,10 +368,9 @@ public class v_admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox c_kategori;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
@@ -315,6 +382,19 @@ public class v_admin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable t_buku;
+    private javax.swing.JTextField t_cari;
+    private javax.swing.JButton t_hapus;
+    private javax.swing.JButton t_tambah;
+    private javax.swing.JButton t_ubah;
     // End of variables declaration//GEN-END:variables
+    private c_admin adminController = new c_admin(this);
+    
+    public JTable getT_buku() {
+        return t_buku;
+    }
+
+    public void setT_buku(JTable t_buku) {
+        this.t_buku = t_buku;
+    }
 }

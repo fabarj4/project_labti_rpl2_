@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.io.Serializable;
 import javax.persistence.Column; 
 import javax.persistence.Entity; 
 import javax.persistence.EnumType; 
@@ -23,11 +24,10 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name = "buku")
-public class m_buku{
-    
+public class m_buku implements Serializable{
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private int id;
+    private String id;
     @Column(name = "judul")
     private String judul;
     @Column(name = "kategori")
@@ -43,11 +43,11 @@ public class m_buku{
     @Column(name = "persedian")
     private int persedian;
     
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
